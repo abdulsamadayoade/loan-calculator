@@ -1,2 +1,2 @@
 # loan-calculator
- a loan calculator app made with javascript
+A loan calculator app made with bootstrap and javascript.
