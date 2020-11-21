@@ -1,11 +1,22 @@
 // FORM SUBMISSION
 const form = document.getElementById('form');
 
-form.addEventListener('submit', calculateResults);
+form.addEventListener('submit', function (e) {
+    // HIDE THE RESULTS
+    document.getElementById('results').style.display = 'none';
+
+    // SHOW THE LOADING SPINNER
+    document.getElementById('loading').style.display = 'block';
+
+    // SHOW RESULTS
+    setTimeout(calculateResults, 2000);
+
+
+    e.preventDefault();
+});
 
 // CALCULATE RESULTS
-function calculateResults(e) {
-    // console.log('calculating...');
+function calculateResults() {
 
     // UI VARIABLES
     const amount = document.getElementById('amount');
@@ -27,14 +38,20 @@ function calculateResults(e) {
         monthlyPayment.value = monthly.toFixed(2);
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments) * principal).toFixed(2);
+
+        // SHOW RESULTS
+        document.getElementById('results').style.display = 'block';
+
+        // HIDE SPINNER
+        document.getElementById('loading').style.display = 'none';
     } else {
         showError('Please check your number');
     }
-
-    e.preventDefault();
 }
 
 function showError(error) {
+    // HIDE THE LOADER
+    document.getElementById('loading').style.display = 'none';
     // CREATE A DIV
     const errorDiv = document.createElement('div');
 
